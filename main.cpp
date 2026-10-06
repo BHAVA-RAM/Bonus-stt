@@ -1,81 +1,34 @@
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
+
 #include "mathfuncs.h"
 #include "randfuncs.h"
-#include "init.h"
 
-using namespace std;
+namespace {
+void displayMathExamples() {
+    std::cout << "=== Math Functions ===\n";
+    std::cout << "add(3, 5) = " << add(3, 5) << '\n';
+    std::cout << "subtract(10, 4) = " << subtract(10, 4) << '\n';
+    std::cout << "multiply(3, 7) = " << multiply(3, 7) << '\n';
+    std::cout << "divide(15, 3) = " << divide(15, 3) << '\n';
+    std::cout << "divide(10, 0) = " << divide(10, 0) << '\n';
+}
 
-int main()
-{
-    initialize();
+void displayRandomExamples() {
+    std::cout << "\n=== Random Functions ===\n";
+    std::cout << "Coin flip: " << flipCoin() << '\n';
+    std::cout << "Dice 6: " << rollDice6() << '\n';
+    std::cout << "Dice 10: " << rollDice10() << '\n';
+}
+}
 
-    int choice;
-    int a, b;
+int main() {
+    const auto seed = static_cast<unsigned>(std::time(nullptr));
+    std::srand(seed);
 
-    do
-    {
-        cout << "\n===== MENU =====\n";
-        cout << "1. Addition\n";
-        cout << "2. Subtraction\n";
-        cout << "3. Multiplication\n";
-        cout << "4. Division\n";
-        cout << "5. Flip Coin\n";
-        cout << "6. Roll 6-sided Dice\n";
-        cout << "7. Roll 10-sided Dice\n";
-        cout << "0. Exit\n";
-        cout << "Enter choice: ";
-        cin >> choice;
+    displayMathExamples();
+    displayRandomExamples();
 
-        switch (choice)
-        {
-        case 1:
-            cout << "Enter two numbers: ";
-            cin >> a >> b;
-            cout << "Answer = " << add(a, b) << endl;
-            break;
-
-        case 2:
-            cout << "Enter two numbers: ";
-            cin >> a >> b;
-            cout << "Answer = " << subtract(a, b) << endl;
-            break;
-
-        case 3:
-            cout << "Enter two numbers: ";
-            cin >> a >> b;
-            cout << "Answer = " << multiply(a, b) << endl;
-            break;
-
-        case 4:
-            cout << "Enter two numbers: ";
-            cin >> a >> b;
-            cout << "Answer = " << divide(a, b) << endl;
-            break;
-
-        case 5:
-            if (flipCoin())
-                cout << "Heads\n";
-            else
-                cout << "Tails\n";
-            break;
-
-        case 6:
-            cout << "Dice = " << roll6() << endl;
-            break;
-
-        case 7:
-            cout << "Dice = " << roll10() << endl;
-            break;
-
-        case 0:
-            cout << "Goodbye!\n";
-            break;
-
-        default:
-            cout << "Invalid Choice\n";
-        }
-
-    } while (choice != 0);
-
-    return 0;
+    return EXIT_SUCCESS;
 }
