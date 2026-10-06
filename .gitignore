@@ -1,0 +1,4 @@
+# Generated C++ build products
+*.o
+main
+main.exe

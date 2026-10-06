@@ -1,0 +1,19 @@
+name: Build and test C++ project
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  compile-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get source
+        uses: actions/checkout@v4
+
+      - name: Compile project
+        run: make
+
+      - name: Execute demo
+        run: ./main
